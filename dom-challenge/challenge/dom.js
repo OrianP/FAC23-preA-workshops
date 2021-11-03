@@ -4,10 +4,6 @@
 3. Remove the class of "highlight" if already present
 e.g. "<p class="para">Hello</p>" -> "<p class="para highlight">Hello</p>"
 */
-const toggleBtn = document.querySelector('#toggle-highlight');
-console.log(toggleBtn);
-toggleBtn.addEventListener('click', () => toggleHighlight);
-
 function toggleHighlight() {
   const secondP = document.querySelectorAll('p')[1];
   secondP.classList.toggle('highlight');
@@ -21,9 +17,6 @@ e.g. generateList(["hello", "world"]) -> <ul>
                                            <li>world</li>
                                           </ul>
 */
-const generateBtn = document.querySelector('#generate-list');
-generateBtn.addEventListener('click', () => generateList);
-
 const generateList = (array) => {
   // create ul element
   const ul = document.createElement('ul');
@@ -34,8 +27,7 @@ const generateList = (array) => {
     li.textContent = str;
     ul.append(li);
   })
-  // append ul to relevant section
-  document.querySelectorAll('section')[1].append(ul);
+  return ul;
 }
 
 /* CHALLENGE 3a
@@ -44,7 +36,9 @@ const generateList = (array) => {
 3. If it contains > 140 characters set the `aria-invalid="true"` attribute
 */
 function validateTweet(textarea) {
-  // your code here
+  if (textarea.textLength > 140) {
+    textarea.setAttribute('aria-invalid', 'true');
+  }
 }
 
 /* CHALLENGE 3b
