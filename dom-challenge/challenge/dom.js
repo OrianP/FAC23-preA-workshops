@@ -59,5 +59,19 @@ e.g. <button class="toggle-button">Toggle</button>
      <p>This should appear/disappear when the button is clicked</p>
 */
 function setupToggleButtons() {
-  // your code here
+  const toggleBtns = document.querySelectorAll('.toggle-button');
+  // add click event listener to every button
+  // find next sibling to each button
+  // if the sibling does not have a hidden attribute, set it with a value of true
+  // else, remove the hidden attribute to reveal the element 
+  toggleBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const sibling = btn.nextElementSibling;
+      if (!sibling.getAttribute('hidden')) {
+        sibling.setAttribute('hidden', 'true');
+      } else {
+        sibling.removeAttribute('hidden')
+      }
+    })  
+  })
 }
