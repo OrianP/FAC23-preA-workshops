@@ -4,8 +4,13 @@
 3. Remove the class of "highlight" if already present
 e.g. "<p class="para">Hello</p>" -> "<p class="para highlight">Hello</p>"
 */
+const toggleBtn = document.querySelector('#toggle-highlight');
+console.log(toggleBtn);
+toggleBtn.addEventListener('click', () => toggleHighlight);
+
 function toggleHighlight() {
-  // your code here
+  const secondP = document.querySelectorAll('p')[1];
+  secondP.classList.toggle('highlight');
 }
 
 /* CHALLENGE 2
