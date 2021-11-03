@@ -21,8 +21,21 @@ e.g. generateList(["hello", "world"]) -> <ul>
                                            <li>world</li>
                                           </ul>
 */
-function generateList(array) {
-  // your code here
+const generateBtn = document.querySelector('#generate-list');
+generateBtn.addEventListener('click', () => generateList);
+
+const generateList = (array) => {
+  // create ul element
+  const ul = document.createElement('ul');
+  // iterate through array of strings and create an li with the string as textContent
+  // append each new li to the ul 
+  array.forEach((str) => {
+    const li = document.createElement('li');
+    li.textContent = str;
+    ul.append(li);
+  })
+  // append ul to relevant section
+  document.querySelectorAll('section')[1].append(ul);
 }
 
 /* CHALLENGE 3a
