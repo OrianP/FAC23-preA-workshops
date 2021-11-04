@@ -9,13 +9,15 @@
     <h1>Open the console</h1>
     <script>
       // Task 1
-
+      
       function getUser(userName) {
         return fetch(`https://api.github.com/users/${userName}`)
         .then((response) => response.json());
       }
 
-      getUser('OrianP').then(console.log).catch((error) => console.log(error));
+      getUser('OrianP')
+        .then(console.log)
+        .catch((error) => console.log(error));
       
       // Task 2
 
@@ -25,9 +27,9 @@
       }
 
       getUser('OrianP')
-      .then((user) => getRepos(user))
-      .then((repos) => console.log(repos))
-      .catch((error) => console.log(error));
+        .then((user) => getRepos(user))
+        .then((repos) => console.log(repos))
+        .catch((error) => console.log(error));
 
       // the syntax above can be written in short as below
       // the value from each call is implicitly passed into the next function/then method
