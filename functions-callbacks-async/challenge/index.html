@@ -8,6 +8,7 @@
   <body>
     <h1>Open the console</h1>
     <script>
+      // function that logs a color string and takes a callback function to execute after 1 sec
       function light(string, callback){
         window.setTimeout(() => {
           console.log(string);
@@ -15,10 +16,18 @@
         }, 1000)
       }
 
-      light('green', light('amber')) 
-      light('red', light('finished'));
-      
-
+      // callback hell! 
+      light('green', () => {
+        light('amber', () => {
+          light('red', () => {
+            light('amber', () => {
+              light('green', () => {
+                console.log('finished');
+              })
+            })
+          })
+        })
+      }) 
 
     </script>
   </body>
