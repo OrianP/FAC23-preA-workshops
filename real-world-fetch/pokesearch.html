@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokeSearch</title>
+  <style>
+      section {
+          padding: 50px;
+      }
+
+      .centre {
+          max-width: fit-content;
+          margin: 0 auto;
+      }
+
+      label {
+          display: block;
+      }
+
+      output {
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+      }
+  </style>
+
+</head>
+<body>
+    <section class="centre">
+        <form>
+            <label for="search-bar">Enter a pokemon name</label>
+            <input type="text" name="pokemon" id="search-bar" required>
+            <button>Search</button>
+        </form>
+        <output></output>
+    </section>
+
+    <script>
+        const form = document.querySelector('form');
+        const output = document.querySelector('output');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // clear previous search result
+            output.innerHTML = "";
+            fetchPokemon();
+        });
+        
+        function fetchPokemon() {
+            // create data object from form entries
+            const data = Object.fromEntries(new FormData(form));
+            
+            // fetch pokemon by name 
+            fetch(`https://pokeapi.co/api/v2/pokemon/${data.pokemon.toLowerCase()}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(response.status) 
+                }
+                return response.json()
+            }) 
+            // if request is successfull
+            .then(pokemonResponse => {
+                // create h2 to display name
+                const pokemonName = document.createElement('H2');
+                pokemonName.textContent = pokemonResponse.name;
+
+                // create img to display sprite
+                const sprite = document.createElement('img');
+                // display female sprite if available 
+                sprite.src = 
+                pokemonResponse.sprites.front_female ? pokemonResponse.sprites.front_female : pokemonResponse.sprites.front_default;
+                sprite.alt ="";
+                // centre image within output
+                sprite.classList.add('centre');
+
+                // append to output
+                output.append(pokemonName, sprite);
+                console.log(pokemonResponse)
+            })
+            // if request is not successfull 
+            .catch(error => {
+                error.message === '404' ?
+                output.textContent = `'${data.pokemon}' not found. Check for typos` :
+                output.textContent = 'something went wrong';
+            })
+        }
+
+    </script>
+</body>
+</html>
