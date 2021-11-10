@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real world fetch</title>
+  </head>
+  <body>
+
+    <form action="">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name"></input>
+      <label for="tel">Telephone</label>
+      <input type="tel" id="tel" name="tel"></input>
+      <label for="email">Email</label>
+      <input type="tel" id="email" name="email"></input>
+
+      <button>Submit</button>
+    </form>
+
+    <script>
+      const form = document.querySelector('form');
+
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        const inputs = document.querySelectorAll("input");
+        const data = Object.fromEntries(new FormData(form));
+        
+        fetch("https://echo.oliverjam.workers.dev/json", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(response.status) 
+        }
+        return response.json();
+      })
+      .then(console.log)
+      .catch(console.error);
+      })
+    </script>
+  </body>
+</html>
