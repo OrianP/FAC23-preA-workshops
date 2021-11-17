@@ -13,6 +13,76 @@
       function square(x) {
         return x * x;
       }
+
+      
+
+      // if (result !== expected) {
+      //   console.error(`Fail: square(2) should return 4, but got ${result}`);
+      // }
+
+      // Write a function called equal that takes two arguments and checks if they’re the same. If they are it should log the success with console.info. If they aren’t it should log the failure with console.error.
+
+      function equal(result, expected, message){
+        if (result === expected){
+          console.info('No errors detected');
+        } else {
+          console.error(`Something went wrong: expected ${expected}, but got ${result}`);
+        }
+      }
+      // console.log(equal(result, expected));
+
+      // Write a notEqual function. It should be similar to equal, but log a failure when its two arguments are the same.
+
+      // Write a test that checks square(3) does not return 10.
+
+      function notEqual(result, expected, message){
+        if (result !== expected){
+          if(message) {
+            console.log(message);
+          } else {
+            console.info(`Success: ${expected} and ${result} are not equal`);
+          } 
+        } else {
+            console.error(`Fail: ${expected} and ${result} are equal`);
+          
+        }
+      }
+
+      // const result = square(3);
+      // const expected = 9;
+      // console.log(notEqual(result, expected));
+
+      // const result1 = square(3);
+      // const expected1 = 10;
+      // console.log(notEqual(result1, expected1));
+
+
+      // We call a test function with a descriptive name, and pass a callback function containing our test code.
+
+      // Write a function called test that takes two arguments: a name and a testFunction. It should use console.group to log a group labelled with the name. You’ll need console.groupEnd to close the group at the end.
+
+      // It should call the testFunction callback argument so that the actual test is run.
+
+      test("Correctly squares integers", () => {
+  const result = square(2);
+  const expected = 6;
+  notEqual(result, expected, 'Congrats! not equal');
+});
+
+test("Correctly squares integers", () => {
+  const result = square(3.5);
+  const expected = 12;
+  notEqual(result, expected, 'Not equal again!');
+});
+
+      function test(name, testFunction){
+        console.group(name);
+        testFunction();
+        console.groupEnd();
+      }
+
+
+      
     </script>
   </body>
 </html>
