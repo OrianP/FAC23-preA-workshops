@@ -3,7 +3,9 @@ const subtract = (a, b) => a - b;
 const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 
-function calculate(a, sign, b) {
+function calculate(input1, sign, input2) {
+  a = parseFloat(input1);
+  b = parseFloat(input2);
   switch (sign) {
     case "+":
       return add(a, b);
