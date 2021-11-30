@@ -11,6 +11,7 @@
   transform: scale(0); */
 }
 
+/* is this animation bounce doing anything??? */
 @keyframes bounce {
   to {
     transform: scale(1);
